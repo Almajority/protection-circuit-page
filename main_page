@@ -1,0 +1,3589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LT4363-1 CAN Bus Protection - Advanced 7-Layer Defense System for Critical Automotive & Industrial Networks">
+    <title>LT4363-1 CAN Bus Protection - Technical Presentation</title>
+    
+    <style>
+        /* CSS Variables for consistency and easy maintenance */
+        :root {
+            --primary-blue: #4a9eff;
+            --secondary-blue: #00d4ff;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: rgba(74, 158, 255, 0.3);
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.6s ease;
+            --max-width: 1200px;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all var(--transition-fast);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(74, 158, 255, 0.1);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(74, 158, 255, 0.2);
+        }
+
+        /* Navigation - Optimized sticky behavior */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            will-change: transform;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width var(--transition-fast);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 2rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            max-width: var(--max-width);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        /* Optimized fade animation */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Staggered animation using CSS */
+        .feature-card:nth-child(1) { animation-delay: 0.4s; }
+        .feature-card:nth-child(2) { animation-delay: 0.5s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        .feature-card:nth-child(4) { animation-delay: 0.7s; }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        /* Timeline optimization */
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideIn 0.8s ease forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Optimized timeline delays */
+        .timeline-item:nth-child(n) {
+            animation-delay: calc(0.1s * var(--item-index));
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-right: 2rem;
+            box-shadow: 0 0 30px rgba(74, 158, 255, 0.5);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+        }
+
+        /* Use Cases Grid */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case {
+            background: #1a1a1a;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .use-case::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(0, 212, 255, 0.1));
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .use-case:hover::before {
+            opacity: 1;
+        }
+
+        .use-case:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(74, 158, 255, 0.2);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Consolidated animation styles */
+        .animated-icon {
+            display: inline-block;
+            position: relative;
+            transform-origin: bottom center;
+        }
+
+        /* Modal Styles - Optimized */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a, #0d1421);
+            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            max-width: 900px;
+            max-height: 90vh;
+            width: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.7) translateY(50px) rotateX(15deg);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 
+                0 30px 60px rgba(74, 158, 255, 0.3),
+                0 0 0 1px rgba(74, 158, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            cursor: default;
+            will-change: transform, opacity;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0) rotateX(0deg);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 10;
+            color: var(--primary-blue);
+        }
+
+        .modal-close:hover {
+            background: var(--primary-blue);
+            color: #1a1a1a;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.5);
+        }
+
+        /* Performance optimization for scrollbar */
+        .modal-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 5px;
+        }
+
+        /* Benefits Section */
+        .benefits-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.8s ease forwards;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Shield Animation - Optimized */
+        .shield-animation {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        .shield {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(0, 212, 255, 0.1));
+            border: 3px solid var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            animation: pulse 3s ease infinite;
+            will-change: transform;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .shield::before,
+        .shield::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+            will-change: transform;
+        }
+
+        .shield::after {
+            inset: -40px;
+            animation-direction: reverse;
+            animation-duration: 15s;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Responsive optimizations */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+        }
+
+        /* Performance hints */
+        .use-case-icon,
+        .shield,
+        .timeline-item {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        /* Additional optimized styles for specific components */
+        .metric-card {
+            background: rgba(74, 158, 255, 0.1);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition-fast);
+            will-change: transform;
+        }
+
+        .metric-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.3);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Circuit preview optimization */
+        .circuit-preview {
+            background: #1e1e1e;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circuit-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(74, 158, 255, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        /* Obsolescence block */
+        .obsolescence-block {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.05), rgba(0, 212, 255, 0.02));
+            border: 2px solid rgba(74, 158, 255, 0.5);
+            border-radius: 16px;
+            margin: 3rem auto;
+            max-width: var(--max-width);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .obsolescence-block:hover {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.08), rgba(0, 212, 255, 0.04));
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2);
+        }
+
+        .obsolescence-header {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .obsolescence-header h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .obsolescence-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .obsolescence-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .obsolescence-inner {
+            padding: 0 2rem 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+        }
+
+        .expand-icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            transition: transform var(--transition-fast);
+        }
+
+        /* Animation CSS preserved but optimized */
+        .use-case:first-child .use-case-icon,
+        .use-case:nth-child(2) .car-icon,
+        .use-case:nth-child(3) .use-case-icon {
+            display: inline-block;
+            animation: none;
+            transition: none;
+            position: relative;
+            transform-origin: bottom center;
+        }
+
+        /* Scooter animation */
+        @keyframes scooterRide {
+            0% { transform: translateX(350px) rotate(0deg); }
+            60% { transform: translateX(100px) rotate(0deg); }
+            75% { transform: translateX(40px) rotate(-5deg); }
+            85% { transform: translateX(10px) rotate(-12deg); }
+            92% { transform: translateX(2px) rotate(-15deg); }
+            96% { transform: translateX(0) rotate(-8deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        @keyframes dustTrail {
+            0% { opacity: 0; transform: translateX(0) scale(0.3); }
+            20% { opacity: 0.6; transform: translateX(10px) scale(0.6); }
+            50% { opacity: 0.4; transform: translateX(25px) scale(1); }
+            100% { opacity: 0; transform: translateX(50px) scale(1.5); }
+        }
+
+        @keyframes scooterBrakeDust {
+            0% { opacity: 0; transform: translateY(5px) scale(0.2); }
+            30% { opacity: 0.7; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-15px) scale(1.5); }
+        }
+
+        .use-case:first-child .use-case-icon::before,
+        .use-case:first-child .use-case-icon::after {
+            content: '💨';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .use-case:first-child .use-case-icon::after {
+            content: '☁️';
+            right: -20px;
+            font-size: 1.2rem;
+            animation-delay: 0.3s;
+        }
+
+        .use-case:first-child:hover .use-case-icon {
+            animation: scooterRide 3s linear forwards;
+        }
+
+        .use-case:first-child:hover .use-case-icon::before {
+            animation: dustTrail 0.4s ease-out 5, scooterBrakeDust 0.6s ease-out 2s forwards;
+        }
+
+        .use-case:first-child:hover .use-case-icon::after {
+            animation: dustTrail 0.4s ease-out 0.4s 4, scooterBrakeDust 0.7s ease-out 2.1s forwards;
+        }
+
+        /* Car animation */
+        .car-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .car-emoji {
+            display: inline-block;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .exhaust-smoke {
+            position: absolute;
+            right: -5px;
+            bottom: 8px;
+            font-size: 0.8rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .smoke1 { right: -8px; bottom: 10px; font-size: 1rem; }
+        .smoke2 { right: -10px; bottom: 6px; font-size: 0.9rem; }
+        .smoke3 { right: -6px; bottom: 8px; font-size: 0.7rem; }
+
+        @keyframes carSpeed {
+            0% { transform: translateX(350px) scaleX(1) rotate(0deg); }
+            40% { transform: translateX(100px) scaleX(1.2) rotate(0deg); }
+            55% { transform: translateX(50px) scaleX(1.15) rotate(-5deg); }
+            70% { transform: translateX(15px) scaleX(0.95) rotate(-15deg); }
+            80% { transform: translateX(2px) scaleX(0.9) rotate(-20deg); }
+            90% { transform: translateX(0) scaleX(0.95) rotate(-12deg); }
+            100% { transform: translateX(0) scaleX(1) rotate(0deg); }
+        }
+
+        @keyframes speedLines {
+            0% { opacity: 0; transform: translateX(0) scaleX(0.5); }
+            20% { opacity: 0.6; transform: translateX(10px) scaleX(1.5); }
+            100% { opacity: 0; transform: translateX(40px) scaleX(3); }
+        }
+
+        @keyframes exhaustPuff {
+            0% { opacity: 0; transform: translateX(0) translateY(0) scale(0.3); }
+            15% { opacity: 0.8; transform: translateX(5px) translateY(-2px) scale(0.5); }
+            30% { opacity: 0.6; transform: translateX(15px) translateY(-4px) scale(0.8); }
+            60% { opacity: 0.3; transform: translateX(30px) translateY(-7px) scale(1.1); }
+            100% { opacity: 0; transform: translateX(45px) translateY(-10px) scale(1.3); }
+        }
+
+        @keyframes exhaustPuffAlt {
+            0% { opacity: 0; transform: translateX(0) translateY(0) scale(0.2); }
+            20% { opacity: 0.7; transform: translateX(8px) translateY(2px) scale(0.6); }
+            50% { opacity: 0.4; transform: translateX(20px) translateY(-1px) scale(0.9); }
+            100% { opacity: 0; transform: translateX(35px) translateY(-5px) scale(1.2); }
+        }
+
+        @keyframes brakeDust {
+            0% { opacity: 0; transform: translateY(10px) scale(0.3); }
+            30% { opacity: 0.8; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-20px) scale(2); }
+        }
+
+        @keyframes exhaustPuffSlow {
+            0% { opacity: 0; transform: translateX(0) translateY(0) scale(0.2); }
+            30% { opacity: 0.5; transform: translateX(3px) translateY(-1px) scale(0.4); }
+            60% { opacity: 0.3; transform: translateX(8px) translateY(-3px) scale(0.6); }
+            100% { opacity: 0; transform: translateX(15px) translateY(-5px) scale(0.8); }
+        }
+
+        .use-case:nth-child(2) .car-icon::before {
+            content: '—';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(74, 158, 255, 0.6);
+            font-size: 1rem;
+            opacity: 0;
+            z-index: 1;
+            font-weight: 300;
+            letter-spacing: -2px;
+        }
+
+        .use-case:nth-child(2) .car-icon::after {
+            content: '💨';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .use-case:nth-child(2):hover .car-icon {
+            animation: carSpeed 2s linear forwards;
+        }
+
+        .use-case:nth-child(2):hover .car-icon::before {
+            animation: speedLines 0.2s ease-out 4;
+        }
+
+        .use-case:nth-child(2):hover .car-icon::after {
+            animation: brakeDust 0.8s ease-out forwards;
+            animation-delay: 1.1s;
+        }
+
+        .use-case:nth-child(2):hover .smoke1 {
+            animation: exhaustPuff 0.15s ease-out 7, exhaustPuffSlow 1s ease-out 1.05s infinite;
+        }
+
+        .use-case:nth-child(2):hover .smoke2 {
+            animation: exhaustPuffAlt 0.2s ease-out 0.1s 5, exhaustPuffSlow 1.2s ease-out 1.1s infinite;
+        }
+
+        .use-case:nth-child(2):hover .smoke3 {
+            animation: exhaustPuff 0.25s ease-out 0.05s 4, exhaustPuffSlow 1.1s ease-out 1.15s infinite;
+        }
+
+        /* Tractor animation */
+        @keyframes tractorMove {
+            0% { transform: translateX(350px) translateY(0) rotate(0deg); }
+            2% { transform: translateX(340px) translateY(-2px) rotate(0.5deg); }
+            4% { transform: translateX(330px) translateY(1px) rotate(-0.5deg); }
+            6% { transform: translateX(320px) translateY(-1px) rotate(0.5deg); }
+            8% { transform: translateX(310px) translateY(2px) rotate(-0.5deg); }
+            10% { transform: translateX(300px) translateY(-2px) rotate(0.5deg); }
+            12% { transform: translateX(290px) translateY(0) rotate(-0.5deg); }
+            14% { transform: translateX(280px) translateY(-1px) rotate(0.5deg); }
+            16% { transform: translateX(270px) translateY(1px) rotate(-0.5deg); }
+            18% { transform: translateX(260px) translateY(-2px) rotate(0.5deg); }
+            20% { transform: translateX(250px) translateY(0) rotate(-0.5deg); }
+            22% { transform: translateX(240px) translateY(-1px) rotate(0.5deg); }
+            24% { transform: translateX(230px) translateY(2px) rotate(-0.5deg); }
+            26% { transform: translateX(220px) translateY(-2px) rotate(0.5deg); }
+            28% { transform: translateX(210px) translateY(1px) rotate(-0.5deg); }
+            30% { transform: translateX(200px) translateY(-1px) rotate(0.5deg); }
+            32% { transform: translateX(190px) translateY(0) rotate(-0.5deg); }
+            34% { transform: translateX(180px) translateY(-2px) rotate(0.5deg); }
+            36% { transform: translateX(170px) translateY(1px) rotate(-0.5deg); }
+            38% { transform: translateX(160px) translateY(-1px) rotate(0.5deg); }
+            40% { transform: translateX(150px) translateY(2px) rotate(-0.5deg); }
+            42% { transform: translateX(140px) translateY(-2px) rotate(0.5deg); }
+            44% { transform: translateX(130px) translateY(0) rotate(-0.5deg); }
+            46% { transform: translateX(120px) translateY(-1px) rotate(0.5deg); }
+            48% { transform: translateX(110px) translateY(1px) rotate(-0.5deg); }
+            50% { transform: translateX(100px) translateY(-2px) rotate(0.5deg); }
+            55% { transform: translateX(90px) translateY(1px) rotate(-0.5deg); }
+            60% { transform: translateX(80px) translateY(-1px) rotate(0.5deg); }
+            65% { transform: translateX(70px) translateY(0) rotate(-0.5deg); }
+            70% { transform: translateX(60px) translateY(-2px) rotate(0.5deg); }
+            75% { transform: translateX(50px) translateY(1px) rotate(-0.5deg); }
+            80% { transform: translateX(40px) translateY(0) rotate(0deg); }
+            85% { transform: translateX(30px) translateY(-1px) rotate(-0.5deg); }
+            90% { transform: translateX(20px) translateY(0) rotate(0deg); }
+            95% { transform: translateX(10px) translateY(0) rotate(-2deg); }
+            98% { transform: translateX(2px) translateY(0) rotate(-1deg); }
+            100% { transform: translateX(0) translateY(0) rotate(0deg); }
+        }
+
+        @keyframes heavyDust {
+            0% { opacity: 0; transform: translateX(0) translateY(0) scale(0.5); }
+            20% { opacity: 0.7; transform: translateX(10px) translateY(0) scale(0.8); }
+            50% { opacity: 0.5; transform: translateX(25px) translateY(0) scale(1.2); }
+            100% { opacity: 0; transform: translateX(45px) translateY(0) scale(1.8); }
+        }
+
+        @keyframes blackSmoke {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0) rotate(270deg) scale(0.3); }
+            30% { opacity: 0.8; transform: translateX(-50%) translateY(-8px) rotate(270deg) scale(0.5); }
+            60% { opacity: 0.5; transform: translateX(-50%) translateY(-18px) rotate(270deg) scale(0.8); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-30px) rotate(270deg) scale(1.2); }
+        }
+
+        @keyframes blackSmokeIdle {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0) rotate(270deg) scale(0.2); }
+            40% { opacity: 0.6; transform: translateX(-50%) translateY(-12px) rotate(270deg) scale(0.5); }
+            70% { opacity: 0.3; transform: translateX(-50%) translateY(-22px) rotate(270deg) scale(0.8); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-35px) rotate(270deg) scale(1.1); }
+        }
+
+        .use-case:nth-child(3) .use-case-icon::before {
+            content: '💨';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            font-size: 1.8rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .use-case:nth-child(3) .use-case-icon::after {
+            content: '☁️';
+            position: absolute;
+            top: 20px;
+            left: 35%;
+            transform: translateX(-50%) rotate(270deg);
+            font-size: 1rem;
+            opacity: 0;
+            z-index: 1;
+            filter: brightness(0.3);
+        }
+
+        .use-case:nth-child(3):hover .use-case-icon {
+            animation: tractorMove 6s ease-out forwards;
+        }
+
+        .use-case:nth-child(3):hover .use-case-icon::before {
+            animation: heavyDust 0.8s ease-out 6;
+        }
+
+        .use-case:nth-child(3):hover .use-case-icon::after {
+            animation: blackSmoke 0.8s ease-out 0.2s 6, blackSmokeIdle 2s ease-out 5s infinite;
+        }
+
+        /* Factory animation */
+        .factory-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .factory-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: inherit;
+            line-height: 1;
+            vertical-align: top;
+        }
+
+        .smoke-container,
+        .smoke-container-2 {
+            position: absolute;
+            top: -3px;
+            z-index: 1;
+        }
+
+        .smoke-container { left: 6px; }
+        .smoke-container-2 { left: 18px; }
+
+        .smoke-container .smoke,
+        .smoke-container-2 .smoke {
+            position: absolute;
+            font-size: 0.9rem;
+            opacity: 0;
+            left: 0;
+            top: 0;
+        }
+
+        @keyframes factorySmoke {
+            0% { opacity: 0; transform: translateY(0) scale(0.3); }
+            15% { opacity: 0.8; }
+            40% { opacity: 0.6; }
+            70% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-40px) translateX(15px) scale(1.8); }
+        }
+
+        .use-case:nth-child(4):hover .smoke-container .smoke {
+            animation: factorySmoke 2.5s infinite;
+        }
+
+        .use-case:nth-child(4):hover .smoke-container .smoke:nth-child(1) { animation-delay: 0s; }
+        .use-case:nth-child(4):hover .smoke-container .smoke:nth-child(2) { animation-delay: 0.83s; }
+        .use-case:nth-child(4):hover .smoke-container .smoke:nth-child(3) { animation-delay: 1.66s; }
+
+        .use-case:nth-child(4):hover .smoke-container-2 .smoke {
+            animation: factorySmoke 2.5s infinite;
+        }
+
+        .use-case:nth-child(4):hover .smoke-container-2 .smoke:nth-child(1) { animation-delay: 0.42s; }
+        .use-case:nth-child(4):hover .smoke-container-2 .smoke:nth-child(2) { animation-delay: 1.25s; }
+
+        /* Ship smoke animation */
+        .ship-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .ship-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: inherit;
+        }
+
+        .ship-smoke-container {
+            position: absolute;
+            top: 5px;
+            left: 12%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .ship-smoke-container .smoke {
+            position: absolute;
+            font-size: 0.7rem;
+            opacity: 0;
+            left: 0;
+            top: 0;
+            filter: brightness(0.8);
+        }
+
+        @keyframes shipSmoke {
+            0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.3); }
+            20% { opacity: 0.8; transform: translateY(-8px) translateX(3px) scale(0.5); }
+            40% { opacity: 0.6; transform: translateY(-18px) translateX(8px) scale(0.8); }
+            70% { opacity: 0.3; transform: translateY(-30px) translateX(15px) scale(1.1); }
+            100% { opacity: 0; transform: translateY(-45px) translateX(25px) scale(1.4); }
+        }
+
+        .use-case:nth-child(5):hover .ship-smoke-container .smoke {
+            animation: shipSmoke 2.5s infinite;
+        }
+
+        .use-case:nth-child(5):hover .ship-smoke-container .smoke:nth-child(1) { animation-delay: 0s; }
+        .use-case:nth-child(5):hover .ship-smoke-container .smoke:nth-child(2) { animation-delay: 0.83s; }
+        .use-case:nth-child(5):hover .ship-smoke-container .smoke:nth-child(3) { animation-delay: 1.66s; }
+
+        /* Ambulance light animation */
+        .ambulance-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .ambulance-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: inherit;
+        }
+
+        .ambulance-light {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            top: 27px;
+            left: 40%;
+            transform: translateX(-50%);
+            z-index: 3;
+            background: #ff0000;
+            box-shadow: 0 0 10px currentColor;
+            opacity: 0;
+        }
+
+        @keyframes emergencyLight {
+            0%, 20% { 
+                background: #ff0000; 
+                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+                opacity: 1;
+            }
+            25%, 45% { 
+                background: #ff0000; 
+                box-shadow: 0 0 3px #ff0000;
+                opacity: 0.2;
+            }
+            50%, 70% { 
+                background: #0000ff; 
+                box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff;
+                opacity: 1;
+            }
+            75%, 95% { 
+                background: #0000ff; 
+                box-shadow: 0 0 3px #0000ff;
+                opacity: 0.2;
+            }
+            100% { 
+                background: #ff0000; 
+                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+                opacity: 1;
+            }
+        }
+
+        .use-case:nth-child(8):hover .ambulance-light {
+            animation: emergencyLight 0.8s ease-in-out infinite;
+        }
+
+        /* Ambulance movement animation */
+        .use-case:nth-child(8) .ambulance-icon {
+            display: inline-block;
+            animation: none;
+            transition: none;
+            position: relative;
+            transform-origin: center center;
+        }
+
+        @keyframes ambulanceMove {
+            0% { transform: translateX(350px); }
+            100% { transform: translateX(0); }
+        }
+
+        .use-case:nth-child(8):hover .ambulance-icon {
+            animation: ambulanceMove 2s ease-out forwards;
+        }
+
+        /* Fire truck styles and animation */
+        .firetruck-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .firetruck-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: 3rem;
+            opacity: 0;
+            transform: scaleX(-1);
+        }
+
+        .firetruck-light {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            top: 20px;
+            left: 67%;
+            transform: translateX(-50%);
+            z-index: 3;
+            background: #ff0000;
+            box-shadow: 0 0 10px currentColor;
+            opacity: 0;
+        }
+
+        @keyframes firetruckMove {
+            0% { 
+                transform: translateX(350px) scaleX(-1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(-350px) scaleX(-1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ambulanceMoveDelayed {
+            0% { 
+                transform: translateX(350px);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .use-case:nth-child(8):hover .firetruck-container {
+            animation: firetruckMove 2.5s ease-out forwards;
+        }
+
+        .use-case:nth-child(8):hover .firetruck-emoji {
+            opacity: 1;
+        }
+
+        .use-case:nth-child(8):hover .firetruck-light {
+            animation: emergencyLight 0.8s ease-in-out infinite;
+        }
+
+        .use-case:nth-child(8):hover .ambulance-icon {
+            animation: ambulanceMoveDelayed 2s ease-out forwards;
+        }
+
+        .use-case:nth-child(8):hover .ambulance-emoji {
+            opacity: 1;
+        }
+
+        /* Ambulance exhaust smoke */
+        .ambulance-smoke {
+            position: absolute;
+            font-size: 0.8rem;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .ambulance-smoke.smoke1 {
+            right: -8px;
+            bottom: 10px;
+        }
+
+        .ambulance-smoke.smoke2 {
+            right: -10px;
+            bottom: 8px;
+        }
+
+        .ambulance-smoke.smoke3 {
+            right: -6px;
+            bottom: 9px;
+        }
+
+        /* Ambulance front orange light */
+        .ambulance-front-light {
+            position: absolute;
+            width: 8px;
+            height: 4px;
+            border-radius: 50%;
+            top: 50px;
+            left: 5px;
+            z-index: 3;
+            background: #ff8c00;
+            box-shadow: 0 0 10px #ff8c00;
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        @keyframes orangeFlash {
+            0%, 100% { 
+                background: #ff8c00; 
+                box-shadow: 0 0 12px #ff8c00, 0 0 25px #ff8c00;
+                opacity: 1;
+                transform: rotate(90deg);
+            }
+            50% { 
+                background: #ff8c00; 
+                box-shadow: 0 0 3px #ff8c00;
+                opacity: 0.3;
+                transform: rotate(90deg);
+            }
+        }
+
+        .use-case:nth-child(8):hover .ambulance-front-light {
+            animation: orangeFlash 0.6s ease-in-out infinite;
+        }
+
+        /* Ambulance brake light */
+        .ambulance-brake-light {
+            position: absolute;
+            width: 8px;
+            height: 6px;
+            border-radius: 2px;
+            top: 50px;
+            right: 7px;
+            z-index: 3;
+            background: #ff0000;
+            box-shadow: 
+                0 0 15px #ff0000, 
+                0 0 25px #ff0000, 
+                0 0 35px #ff0000,
+                0 0 50px rgba(255, 0, 0, 0.6),
+                0 0 70px rgba(255, 0, 0, 0.4),
+                0 0 90px rgba(255, 0, 0, 0.2);
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        .ambulance-brake-light::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 0, 0, 0.4) 0%, 
+                rgba(255, 0, 0, 0.2) 30%, 
+                rgba(255, 0, 0, 0.1) 50%, 
+                transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes brakeLight {
+            0%, 70% { 
+                opacity: 0;
+            }
+            75%, 100% { 
+                background: #ff0000; 
+                box-shadow: 
+                    0 0 20px #ff0000, 
+                    0 0 40px #ff0000, 
+                    0 0 60px rgba(255, 0, 0, 0.8),
+                    0 0 80px rgba(255, 0, 0, 0.6),
+                    0 0 100px rgba(255, 0, 0, 0.4),
+                    0 0 120px rgba(255, 0, 0, 0.2);
+                opacity: 1;
+                transform: rotate(180deg);
+            }
+        }
+
+        .ambulance-brake-light::before {
+            animation: brakeLightGlow 2s ease-out forwards;
+        }
+
+        @keyframes brakeLightGlow {
+            0%, 70% { 
+                opacity: 0;
+            }
+            75%, 100% { 
+                opacity: 1;
+            }
+        }
+
+        .use-case:nth-child(8):hover .ambulance-brake-light {
+            animation: brakeLight 2s ease-out forwards;
+        }
+
+        .use-case:nth-child(8):hover .ambulance-brake-light::before {
+            animation: brakeLightGlow 2s ease-out forwards;
+        }
+
+        /* Train zoom animation */
+        .train-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            perspective: 500px;
+        }
+
+        .train-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: inherit;
+            transform-origin: center center;
+        }
+
+        .use-case:nth-child(6) .train-icon {
+            display: inline-block;
+            animation: none;
+            transition: none;
+            position: relative;
+        }
+
+        @keyframes trainApproach {
+            0% { 
+                transform: scale(0.3);
+                opacity: 0.5;
+                filter: blur(2px);
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .use-case:nth-child(6):hover .train-emoji {
+            animation: trainApproach 2.5s ease-out forwards;
+            will-change: transform, opacity, filter;
+        }
+
+        /* Bus animation */
+        .bus-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bus-emoji {
+            position: relative;
+            z-index: 3;
+            display: inline-block;
+            font-size: 3rem;
+            opacity: 0;
+        }
+
+        @keyframes busArrive {
+            0% { 
+                transform: translateX(300px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                transform: translateX(85px);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(80px);
+                opacity: 1;
+            }
+        }
+
+        .use-case:nth-child(6):hover .bus-emoji {
+            animation: busArrive 2s ease-out forwards;
+        }
+
+        @keyframes ambulanceExhaust {
+            0% { opacity: 0; transform: translateX(0) scale(0.3); }
+            15% { opacity: 0.7; transform: translateX(5px) scale(0.5); }
+            30% { opacity: 0.5; transform: translateX(15px) scale(0.8); }
+            60% { opacity: 0.3; transform: translateX(30px) scale(1.1); }
+            100% { opacity: 0; transform: translateX(45px) scale(1.3); }
+        }
+
+        @keyframes ambulanceExhaustDuring {
+            0% { opacity: 0; transform: translateX(0) scale(0.3); }
+            25% { opacity: 0.7; transform: translateX(5px) scale(0.5); }
+            50% { opacity: 0.5; transform: translateX(15px) scale(0.8); }
+            75% { opacity: 0.3; transform: translateX(30px) scale(1.1); }
+            100% { opacity: 0; transform: translateX(45px) scale(1.3); }
+        }
+
+        .use-case:nth-child(8):hover .ambulance-smoke.smoke1 {
+            animation: ambulanceExhaustDuring 0.4s ease-out 0s 5;
+        }
+
+        .use-case:nth-child(8):hover .ambulance-smoke.smoke2 {
+            animation: ambulanceExhaustDuring 0.4s ease-out 0.13s 5;
+        }
+
+        .use-case:nth-child(8):hover .ambulance-smoke.smoke3 {
+            animation: ambulanceExhaustDuring 0.4s ease-out 0.26s 5;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Renewable Energy lightning animation */
+        .renewable-icon {
+            position: relative;
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .lightning-emoji {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: inherit;
+        }
+
+        .electric-spark {
+            position: absolute;
+            font-size: 0.8rem;
+            opacity: 0;
+            z-index: 3;
+        }
+
+        .spark1 { top: -5px; right: 10px; }
+        .spark2 { bottom: 5px; left: 10px; }
+        .spark3 { top: 15px; right: -5px; font-size: 0.6rem; }
+
+        .electric-arc {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .electric-arc::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid #ffcc00;
+            border-radius: 50%;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes lightningGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 5px #ffcc00); transform: scale(1) rotate(0deg); }
+            25% { filter: brightness(1.3) drop-shadow(0 0 15px #ffcc00); transform: scale(1.05) rotate(-2deg); }
+            50% { filter: brightness(1.1) drop-shadow(0 0 10px #ffcc00); transform: scale(1.02) rotate(1deg); }
+            75% { filter: brightness(1.4) drop-shadow(0 0 20px #ffcc00); transform: scale(1.08) rotate(-1deg); }
+        }
+
+        @keyframes electricSpark {
+            0%, 90% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            92% { opacity: 1; transform: scale(1) rotate(180deg); }
+            100% { opacity: 0; transform: scale(1.2) rotate(360deg); }
+        }
+
+        @keyframes electricArc {
+            0%, 85% { opacity: 0; transform: scale(0.8); }
+            90% { opacity: 0.6; transform: scale(1); }
+            95% { opacity: 0.3; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(1.2); }
+        }
+
+        @keyframes lightningFlash {
+            0%, 94% { opacity: 1; }
+            95% { opacity: 0.3; }
+            96% { opacity: 1; }
+            97% { opacity: 0.5; }
+            98% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        .use-case:nth-child(7):hover .lightning-emoji {
+            animation: lightningGlow 2s ease-in-out infinite, lightningFlash 3s ease-in-out infinite;
+        }
+
+        .use-case:nth-child(7):hover .spark1 { animation: electricSpark 2s ease-out infinite; animation-delay: 0.5s; }
+        .use-case:nth-child(7):hover .spark2 { animation: electricSpark 2s ease-out infinite; animation-delay: 1.2s; }
+        .use-case:nth-child(7):hover .spark3 { animation: electricSpark 2s ease-out infinite; animation-delay: 1.8s; }
+
+        .use-case:nth-child(7):hover .arc1::before { animation: electricArc 2s ease-out infinite; animation-delay: 0.3s; }
+        .use-case:nth-child(7):hover .arc2::before { animation: electricArc 2s ease-out infinite; animation-delay: 1.5s; border-color: #fff700; }
+
+        .use-case h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 2;
+        }
+
+        .use-case p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .click-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: all var(--transition-fast);
+            animation: clickPulse 2s ease infinite;
+        }
+
+        @keyframes clickPulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .use-case:hover .click-indicator {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Modal content styles preserved but optimized */
+        .modal-header {
+            padding: 3rem 3rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+            animation: modalPulse 4s ease infinite;
+        }
+
+        @keyframes modalPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: modalBounce 2s ease infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes modalBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-10px) scale(1.05); }
+            50% { transform: translateY(-5px) scale(1.02); }
+            75% { transform: translateY(-15px) scale(1.08); }
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .modal-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-body {
+            padding: 2rem 3rem 3rem;
+            position: relative;
+        }
+
+        .scenario-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(74, 158, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-blue);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInLeft 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .scenario-item:hover::before {
+            left: 100%;
+        }
+
+        .scenario-item:nth-child(1) { animation-delay: 0.1s; }
+        .scenario-item:nth-child(2) { animation-delay: 0.2s; }
+        .scenario-item:nth-child(3) { animation-delay: 0.3s; }
+        .scenario-item:nth-child(4) { animation-delay: 0.4s; }
+        .scenario-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .scenario-title {
+            color: var(--secondary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scenario-description {
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-box {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: scaleIn 0.6s ease 0.5s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue), var(--primary-blue));
+            border-radius: 12px;
+            z-index: -1;
+            animation: borderGlow 3s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .redundancy-box {
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(255, 220, 0, 0.05));
+            border: 2px solid #ffcc00;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .redundancy-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.2), transparent);
+            animation: shimmer 3s ease infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .redundancy-box.safe {
+            background: linear-gradient(135deg, rgba(0, 200, 100, 0.1), rgba(0, 255, 127, 0.05));
+            border-color: #00c864;
+        }
+
+        .redundancy-box.safe::before {
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 100, 0.2), transparent);
+        }
+
+        .redundancy-box.extreme {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 50, 50, 0.05));
+            border-color: #ff0000;
+        }
+
+        .redundancy-box.extreme::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+        }
+
+        /* Circuit SVG styles */
+        .circuit-svg-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            border: 2px solid #333;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .circuit-svg-container.dragging {
+            cursor: grabbing;
+        }
+
+        .circuit-svg {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .zoom-btn:hover {
+            background: var(--primary-blue);
+            color: #1e1e1e;
+        }
+
+        .zoom-btn:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-level {
+            background: #333;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 8px;
+            padding: 5px 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Circuit component styles */
+        .component-text { fill: #fff; font-size: 12px; font-family: monospace; }
+        .value-text { fill: var(--primary-blue); font-size: 11px; font-family: monospace; }
+        .wire { stroke: var(--primary-blue); stroke-width: 2; fill: none; }
+        .component-box { fill: #333; stroke: var(--primary-blue); stroke-width: 2; }
+        .pin-dot { fill: var(--primary-blue); stroke: #fff; stroke-width: 1; }
+        .junction-dot { fill: var(--primary-blue); stroke: var(--primary-blue); stroke-width: 2; }
+        .resistor { fill: none; stroke: var(--primary-blue); stroke-width: 2; }
+        .capacitor-line { stroke: var(--primary-blue); stroke-width: 2; }
+        .diode-shape { fill: none; stroke: var(--primary-blue); stroke-width: 2; }
+        .mosfet-body { fill: none; stroke: var(--primary-blue); stroke-width: 2; }
+        .ground-symbol { stroke: var(--primary-blue); stroke-width: 2; }
+        .optional-box { fill: #333; stroke: var(--primary-blue); stroke-width: 2; stroke-dasharray: 5,5; }
+        
+        /* LED styles from provided code */
+        .led-p { fill: #f44; stroke: #f44; stroke-width: 2; }
+        .led-g { fill: #f44; opacity: 0.3; animation: p 2s infinite; }
+        @keyframes p { 50% { opacity: 1; } }
+
+        /* Tech grid and metrics grid */
+        .tech-grid,
+        .metrics-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .metrics-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-fast);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(74, 158, 255, 0.2);
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .tech-specs {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .tech-specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tech-specs li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+        }
+
+        .spec-value {
+            color: var(--secondary-blue);
+            font-weight: 600;
+        }
+
+        .benefit-text h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-text p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .benefits-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+    </style>
+
+    <script>
+        // Optimized Modal System
+        class ModalManager {
+            constructor() {
+                this.activeModal = null;
+                this.init();
+            }
+
+            init() {
+                // Event delegation for better performance
+                document.addEventListener('click', this.handleClick.bind(this));
+                document.addEventListener('keydown', this.handleEscKey.bind(this));
+            }
+
+            handleClick(event) {
+                // Handle modal triggers
+                const useCase = event.target.closest('.use-case');
+                if (useCase && useCase.hasAttribute('onclick')) {
+                    event.preventDefault();
+                    const modalId = useCase.getAttribute('onclick').match(/openModal\('(.+?)'\)/)?.[1];
+                    if (modalId) this.openModal(modalId);
+                }
+
+                // Handle modal close button
+                if (event.target.classList.contains('modal-close')) {
+                    const modal = event.target.closest('.modal-overlay');
+                    if (modal) this.closeModal(modal.id);
+                }
+
+                // Handle overlay click
+                if (event.target.classList.contains('modal-overlay')) {
+                    this.closeModal(event.target.id);
+                }
+            }
+
+            handleEscKey(event) {
+                if ((event.key === 'Escape' || event.keyCode === 27) && this.activeModal) {
+                    this.closeModal(this.activeModal);
+                }
+            }
+
+            openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                this.activeModal = modalId;
+
+                // Reset scroll position
+                const modalContent = modal.querySelector('.modal-content');
+                if (modalContent) modalContent.scrollTop = 0;
+            }
+
+            closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                this.activeModal = null;
+            }
+        }
+
+        // Optimized Circuit Controls
+        class CircuitControls {
+            constructor() {
+                this.scale = 1;
+                this.translateX = 0;
+                this.translateY = 0;
+                this.isDragging = false;
+                this.startX = 0;
+                this.startY = 0;
+                this.svg = null;
+                this.container = null;
+                this.zoomDisplay = null;
+            }
+
+            init() {
+                this.svg = document.getElementById('circuitSvg');
+                this.container = document.getElementById('svgContainer');
+                this.zoomDisplay = document.getElementById('zoomLevel');
+
+                if (!this.svg || !this.container) return;
+
+                // Mouse wheel zoom
+                this.container.addEventListener('wheel', this.handleWheel.bind(this));
+
+                // Pan functionality
+                this.container.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                document.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                document.addEventListener('mouseup', this.handleMouseUp.bind(this));
+
+                // Touch support
+                this.container.addEventListener('touchstart', this.handleTouchStart.bind(this));
+                this.container.addEventListener('touchmove', this.handleTouchMove.bind(this));
+                this.container.addEventListener('touchend', this.handleTouchEnd.bind(this));
+            }
+
+            updateTransform() {
+                if (this.svg) {
+                    this.svg.style.transform = `translate(${this.translateX}px, ${this.translateY}px) scale(${this.scale})`;
+                    this.svg.style.transformOrigin = '0 0';
+                }
+                if (this.zoomDisplay) {
+                    this.zoomDisplay.textContent = Math.round(this.scale * 100) + '%';
+                }
+            }
+
+            handleWheel(e) {
+                e.preventDefault();
+                const rect = this.container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(this.scale * delta, 0.5), 3);
+
+                // Zoom to mouse position
+                const sx = (x - this.translateX) / this.scale;
+                const sy = (y - this.translateY) / this.scale;
+
+                this.scale = newScale;
+                this.translateX = x - sx * this.scale;
+                this.translateY = y - sy * this.scale;
+
+                this.updateTransform();
+            }
+
+            handleMouseDown(e) {
+                this.isDragging = true;
+                this.startX = e.clientX - this.translateX;
+                this.startY = e.clientY - this.translateY;
+                this.container.classList.add('dragging');
+            }
+
+            handleMouseMove(e) {
+                if (!this.isDragging) return;
+
+                this.translateX = e.clientX - this.startX;
+                this.translateY = e.clientY - this.startY;
+                this.updateTransform();
+            }
+
+            handleMouseUp() {
+                this.isDragging = false;
+                this.container.classList.remove('dragging');
+            }
+
+            handleTouchStart(e) {
+                if (e.touches.length === 1) {
+                    this.isDragging = true;
+                    this.startX = e.touches[0].clientX - this.translateX;
+                    this.startY = e.touches[0].clientY - this.translateY;
+                }
+            }
+
+            handleTouchMove(e) {
+                if (!this.isDragging || e.touches.length !== 1) return;
+                e.preventDefault();
+
+                this.translateX = e.touches[0].clientX - this.startX;
+                this.translateY = e.touches[0].clientY - this.startY;
+                this.updateTransform();
+            }
+
+            handleTouchEnd() {
+                this.isDragging = false;
+            }
+
+            zoomIn() {
+                if (this.scale < 3) {
+                    const rect = this.container.getBoundingClientRect();
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const svgX = (centerX - this.translateX) / this.scale;
+                    const svgY = (centerY - this.translateY) / this.scale;
+
+                    this.scale = Math.min(this.scale * 1.2, 3);
+
+                    this.translateX = centerX - svgX * this.scale;
+                    this.translateY = centerY - svgY * this.scale;
+
+                    this.updateTransform();
+                }
+            }
+
+            zoomOut() {
+                if (this.scale > 0.5) {
+                    const rect = this.container.getBoundingClientRect();
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const svgX = (centerX - this.translateX) / this.scale;
+                    const svgY = (centerY - this.translateY) / this.scale;
+
+                    this.scale = Math.max(this.scale * 0.8, 0.5);
+
+                    this.translateX = centerX - svgX * this.scale;
+                    this.translateY = centerY - svgY * this.scale;
+
+                    this.updateTransform();
+                }
+            }
+
+            resetView() {
+                this.scale = 1;
+                this.translateX = 0;
+                this.translateY = 0;
+                this.updateTransform();
+            }
+        }
+
+        // Global instances
+        let modalManager;
+        let circuitControls;
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            modalManager = new ModalManager();
+            circuitControls = new CircuitControls();
+            circuitControls.init();
+
+            // Set up timeline item delays
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.setProperty('--item-index', index + 1);
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Global functions for backwards compatibility
+        function openModal(modalId) {
+            if (modalManager) modalManager.openModal(modalId);
+        }
+
+        function closeModal(modalId) {
+            if (modalManager) modalManager.closeModal(modalId);
+        }
+
+        function zoomIn() {
+            if (circuitControls) circuitControls.zoomIn();
+        }
+
+        function zoomOut() {
+            if (circuitControls) circuitControls.zoomOut();
+        }
+
+        function resetView() {
+            if (circuitControls) circuitControls.resetView();
+        }
+
+        function toggleObsolescenceDetails() {
+            const details = document.getElementById('obsolescenceDetails');
+            const expandIcon = document.getElementById('obsolescenceExpandIcon');
+            const block = document.getElementById('obsolescenceBlock');
+            
+            if (details && expandIcon && block) {
+                if (details.style.maxHeight === '0px' || details.style.maxHeight === '') {
+                    details.style.maxHeight = '2000px';
+                    expandIcon.style.transform = 'rotate(45deg)';
+                    block.style.background = 'linear-gradient(135deg, rgba(74, 158, 255, 0.08), rgba(0, 212, 255, 0.04))';
+                    block.style.borderColor = '#4a9eff';
+                    
+                    setTimeout(() => {
+                        if (details.style.maxHeight !== '0px') {
+                            details.style.maxHeight = details.scrollHeight + 'px';
+                        }
+                    }, 500);
+                } else {
+                    details.style.maxHeight = '0';
+                    expandIcon.style.transform = 'rotate(0deg)';
+                    block.style.background = 'linear-gradient(135deg, rgba(74, 158, 255, 0.05), rgba(0, 212, 255, 0.02))';
+                    block.style.borderColor = 'rgba(74, 158, 255, 0.5)';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="nav-title gradient-text">LT4363-1 Protection Circuit</div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#protection" class="nav-link">Protection</a></li>
+                <li><a href="#applications" class="nav-link">Applications</a></li>
+                <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                <li><a href="#technical" class="nav-link">Technical</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title gradient-text">Advanced CAN Bus Protection</h1>
+            <p class="hero-subtitle">7-Layer Defense System for Critical Automotive & Industrial Networks</p>
+            
+            <div class="hero-features">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">55V Fault Tolerance</h3>
+                    <p>Survives sustained overvoltage conditions</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">7-Layer Protection</h3>
+                    <p>Multi-stage defense from EMI to transients</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">Intelligent Control</h3>
+                    <p>LT4363-1 surge stopper technology</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Real-Time Status</h3>
+                    <p>Visual fault indication for diagnostics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protection Layers -->
+    <section id="protection" class="section">
+        <h2 class="section-title gradient-text">7-Layer Protection System</h2>
+        <p class="section-subtitle">Comprehensive defense from nanoseconds to sustained faults</p>
+        
+        <div class="protection-timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content glass-card">
+                    <h4>Ferrite Bead (FB1)</h4>
+                    <p>First line of defense - 120Ω@100MHz impedance blocks high-frequency noise and EMI at the entry point</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content glass-card">
+                    <h4>Input Zener (D1)</h4>
+                    <p>5.1V BZX84C5V1 provides nanosecond response to voltage spikes, clamping fast transients</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content glass-card">
+                    <h4>Current Sense Resistor (RSNS)</h4>
+                    <p>0.5Ω precision resistor enables 100mA current limiting, preventing overcurrent damage</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content glass-card">
+                    <h4>Capacitive Filter (C1)</h4>
+                    <p>1µF ceramic capacitor provides low-frequency noise filtering and voltage smoothing</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content glass-card">
+                    <h4>LT4363-1 Controller</h4>
+                    <p>Intelligent surge stopper monitors conditions and disconnects at 10.3V overvoltage</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">6</div>
+                <div class="timeline-content glass-card">
+                    <h4>Precision Voltage Divider (R1/R2)</h4>
+                    <p>Sets exact 10.3V trip threshold, optimized for 5V CAN systems while preventing false triggers</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">7</div>
+                <div class="timeline-content glass-card">
+                    <h4>Output TVS (1.5KE6.8CA)</h4>
+                    <p>Bidirectional 6.8V TVS diode provides secondary transient protection at the output stage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All the rest of the HTML content continues exactly as in the original, 
+         just with the optimized CSS and JavaScript applied -->
+    
+    <!-- I'll continue with the rest of the HTML structure... -->
+    
+    <!-- Use Cases Section -->
+    <section id="applications" class="section">
+        <h2 class="section-title gradient-text">Real-World Applications</h2>
+        <p class="section-subtitle">Where advanced CAN protection makes the difference</p>
+        
+        <div class="use-cases">
+            <div class="use-case" onclick="openModal('microModal')">
+                <span class="use-case-icon">🛴</span>
+                <h3>Micromobility</h3>
+                <p>Essential for e-scooters, e-bikes, and personal EVs where CAN networks control motor drivers, battery management systems, and user interfaces.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" onclick="openModal('automotiveModal')">
+                <span class="use-case-icon car-icon">
+                    <span class="car-emoji">🚗</span>
+                    <span class="exhaust-smoke smoke1">💨</span>
+                    <span class="exhaust-smoke smoke2">💨</span>
+                    <span class="exhaust-smoke smoke3">☁️</span>
+                </span>
+                <h3>Automotive ECUs</h3>
+                <p>Protects critical engine control units, transmission controllers, and safety systems from voltage spikes during load dumps and jump starts.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" onclick="openModal('heavyModal')">
+                <span class="use-case-icon">🚜</span>
+                <h3>Heavy Equipment</h3>
+                <p>Withstands extreme conditions in construction and agricultural machinery. Handles 24V systems and electromagnetic interference.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" onclick="openModal('industrialModal')">
+                <span class="use-case-icon factory-icon">
+                    <span class="smoke-container">
+                        <span class="smoke">💨</span>
+                        <span class="smoke">💨</span>
+                        <span class="smoke">💨</span>
+                    </span>
+                    <span class="smoke-container-2">
+                        <span class="smoke">💨</span>
+                        <span class="smoke">💨</span>
+                        <span class="smoke">💨</span>
+                    </span>
+                    <span class="factory-emoji">🏭</span>
+                </span>
+                <h3>Industrial Automation</h3>
+                <p>Safeguards PLCs, sensors, and actuators in harsh factory environments with electrical noise from motor drives and welding equipment.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" onclick="openModal('marineModal')">
+                <span class="use-case-icon ship-icon">
+                    <span class="ship-smoke-container">
+                        <span class="smoke">☁️</span>
+                        <span class="smoke">☁️</span>
+                        <span class="smoke">☁️</span>
+                    </span>
+                    <span class="ship-emoji">🚢</span>
+                </span>
+                <h3>Marine Electronics</h3>
+                <p>Provides robust protection against salt spray effects, voltage fluctuations, and ground loops common in marine installations.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(255, 204, 0, 0.5);" onclick="openModal('transportModal')">
+                <span class="use-case-icon train-icon">
+                    <span class="bus-container">
+                        <span class="bus-emoji">🚌</span>
+                    </span>
+                    <span class="train-emoji">🚆</span>
+                </span>
+                <h3 style="margin-bottom: 0;">Transportation Systems</h3>
+                <p style="color: #ffcc00; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">+ Level 2 Redundancy</p>
+                <p>Critical for trains, buses, and commercial vehicles where CAN networks control everything from doors to engines.</p>
+                <div class="click-indicator" style="color: #ffcc00;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(255, 204, 0, 0.5);" onclick="openModal('renewableModal')">
+                <span class="use-case-icon renewable-icon">
+                    <span class="lightning-emoji">⚡</span>
+                    <span class="electric-spark spark1">✨</span>
+                    <span class="electric-spark spark2">✨</span>
+                    <span class="electric-spark spark3">⚡</span>
+                    <span class="electric-arc arc1"></span>
+                    <span class="electric-arc arc2"></span>
+                </span>
+                <h3 style="margin-bottom: 0;">Renewable Energy</h3>
+                <p style="color: #ffcc00; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">+ Level 2 Redundancy</p>
+                <p>Protects inverter communications in solar and wind installations from grid transients and lightning-induced surges.</p>
+                <div class="click-indicator" style="color: #ffcc00;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(0, 200, 100, 0.5);" onclick="openModal('firstResponderModal')">
+                <span class="use-case-icon ambulance-icon">
+                    <span class="firetruck-container">
+                        <span class="firetruck-light"></span>
+                        <span class="firetruck-emoji">🚒</span>
+                    </span>
+                    <span class="ambulance-light"></span>
+                    <span class="ambulance-front-light"></span>
+                    <span class="ambulance-brake-light"></span>
+                    <span class="ambulance-emoji">🚑</span>
+                    <span class="ambulance-smoke smoke1">💨</span>
+                    <span class="ambulance-smoke smoke2">💨</span>
+                    <span class="ambulance-smoke smoke3">💨</span>
+                </span>
+                <h3 style="margin-bottom: 0;">First Responders</h3>
+                <p style="color: #00c864; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">Safe Edition Level 3</p>
+                <p>Critical for emergency vehicles where CAN networks control life-saving equipment and warning systems.</p>
+                <div class="click-indicator" style="color: #00c864;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(0, 200, 100, 0.5);" onclick="openModal('hospitalModal')">
+                <span class="use-case-icon">🏥</span>
+                <h3 style="margin-bottom: 0;">Hospitals</h3>
+                <p style="color: #00c864; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">Safe Edition Level 3</p>
+                <p>Essential for medical facility infrastructure controlling HVAC, power distribution, and medical gas systems.</p>
+                <div class="click-indicator" style="color: #00c864;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(255, 0, 0, 0.5);" onclick="openModal('aerospaceModal')">
+                <span class="use-case-icon">✈️</span>
+                <h3 style="margin-bottom: 0;">Aerospace</h3>
+                <p style="color: #ff0000; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">Extreme Edition</p>
+                <p>Vital for aircraft and spacecraft CAN networks controlling flight systems, engineered for lightning strikes and cosmic radiation.</p>
+                <div class="click-indicator" style="color: #ff0000;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="border: 2px solid rgba(255, 0, 0, 0.5);" onclick="openModal('militaryModal')">
+                <span class="use-case-icon">🎖️</span>
+                <h3 style="margin-bottom: 0;">Military</h3>
+                <p style="color: #ff0000; font-size: 0.9rem; margin-top: -0.25rem; margin-bottom: 0.5rem; font-weight: 600;">Extreme Edition</p>
+                <p>Critical for defense systems requiring EMP protection, ballistic resistance, and cyber-hardening capabilities.</p>
+                <div class="click-indicator" style="color: #ff0000;">Click to explore →</div>
+            </div>
+            
+            <div class="use-case" style="grid-column: span 2; background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(0, 212, 255, 0.05)); border: 2px solid #4a9eff;" onclick="openModal('canUniversalModal')">
+                <span class="use-case-icon" style="font-size: 4rem;">🔌</span>
+                <h3 style="font-size: 1.8rem; color: #4a9eff;">For All CAN Bus Circuits</h3>
+                <p>Universal Protection for Any CAN Implementation - Compatible with all protocols, speeds, and voltage levels.</p>
+                <div class="click-indicator">Click to explore →</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The rest of the HTML continues with all modals and remaining sections -->
+    <!-- I'm preserving all modal content and structure exactly as in the original -->
+    
+    <!-- Including all 12 modal overlays with their full content... -->
+    
+    <!-- Micromobility Modal -->
+    <div class="modal-overlay" id="microModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🛴</div>
+                <h2 class="modal-title">Micromobility Protection</h2>
+                <p class="modal-subtitle">Critical for e-scooters, e-bikes, and personal EVs</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">💧 Water Ingress Protection</h4>
+                    <p class="scenario-description">E-scooters left in rain often experience water intrusion causing shorts. The circuit detects abnormal current draw and disconnects before the CAN bus fails, keeping the vehicle recoverable.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔌 Rapid Charging Spikes</h4>
+                    <p class="scenario-description">Fast chargers can inject 48V+ spikes into 36V systems. The protection clamps voltage within 1ms, preventing BMS failure that would brick the entire battery pack ($300-800 replacement).</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔨 Vandalism & Abuse</h4>
+                    <p class="scenario-description">Shared scooters endure kicks, drops, and intentional damage. Physical impacts create voltage transients as connectors momentarily break. The TVS absorbs these spikes, maintaining communication.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🌡️ Extreme Weather Operation</h4>
+                    <p class="scenario-description">From Arizona heat (+50°C) to Minnesota winters (-30°C), components must survive where consumer electronics fail. Automotive-grade design ensures year-round fleet operation.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Fleet Impact:</strong> Average downtime costs $50/day per vehicle. One protected CAN bus prevents 10+ failure modes, saving $15,000+ annually per 100-unit fleet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All other modals continue with exact same content... -->
+    <!-- Automotive Modal, Heavy Equipment Modal, Industrial Modal, etc. -->
+    <!-- Preserving all modal content exactly as in original -->
+
+    <!-- Automotive Modal -->
+    <div class="modal-overlay" id="automotiveModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🚗</div>
+                <h2 class="modal-title">Automotive ECU Protection</h2>
+                <p class="modal-subtitle">Essential for modern vehicles with 50+ ECUs</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔋 Jump Start Protection</h4>
+                    <p class="scenario-description">When a vehicle receives a jump start, voltage can spike to 24-28V momentarily. The LT4363-1 instantly disconnects at 10.3V, protecting sensitive ECUs that would fail at 16V+.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ Load Dump Events</h4>
+                    <p class="scenario-description">When the alternator suddenly loses its load (battery disconnect), voltages can surge to 80-100V for 400ms. This circuit clamps and disconnects in <10ms, preventing ECU destruction.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🌡️ Engine Bay Heat</h4>
+                    <p class="scenario-description">Operating at -40°C to +125°C, it protects ECUs mounted near engines where temperatures exceed 100°C, while consumer-grade protection fails at 85°C.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🚙 Electric Vehicle Compatibility</h4>
+                    <p class="scenario-description">In EVs, regenerative braking creates voltage transients. The bidirectional TVS handles both positive and negative spikes, protecting motor controllers and battery management systems.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Cost Impact:</strong> A single unprotected ECU failure costs $500-$5000 + labor. This $10 protection circuit prevents thousands in warranty claims.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Heavy Equipment Modal -->
+    <div class="modal-overlay" id="heavyModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🚜</div>
+                <h2 class="modal-title">Heavy Equipment Protection</h2>
+                <p class="modal-subtitle">Built for extreme construction and agricultural conditions</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔨 Hydraulic Solenoid Spikes</h4>
+                    <p class="scenario-description">Excavator hydraulic valves create 200-300V back-EMF spikes when de-energized. The protection absorbs these transients, preventing CAN failure that would disable the entire machine, avoiding $500-2000/day rental losses.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🌡️ Extreme Temperature Cycles</h4>
+                    <p class="scenario-description">From -40°C morning starts to +70°C engine compartment temps, components face 110°C daily swings. Automotive-grade parts maintain reliability where consumer electronics fail within weeks.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ 24V Jump Starting</h4>
+                    <p class="scenario-description">Heavy equipment often requires 24V jump starts with spikes reaching 40-50V. The circuit's 55V rating provides margin while the 10.3V trip prevents damage to 5V CAN transceivers in GPS and telematics systems.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">💥 Vibration & Shock</h4>
+                    <p class="scenario-description">Constant 5-10G vibration and 50G shocks from hydraulic hammers create intermittent connections. The TVS clamps microsecond transients from breaking contacts, maintaining communication during heavy operation.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Operational Impact:</strong> Equipment downtime costs $200-500/hour + operator wages. One protected CAN network prevents diagnostic system failures that account for 35% of field service calls.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Industrial Modal -->
+    <div class="modal-overlay" id="industrialModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🏭</div>
+                <h2 class="modal-title">Industrial Automation Protection</h2>
+                <p class="modal-subtitle">Ensuring 24/7 production reliability</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ VFD Motor Drive Noise</h4>
+                    <p class="scenario-description">Variable frequency drives generate 600V switching transients at 20kHz. The ferrite bead and capacitor filter this high-frequency noise, preventing false CAN messages that could stop production lines.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔥 Arc Welding Interference</h4>
+                    <p class="scenario-description">Welding creates 10kV EMI pulses that couple into nearby cables. The multi-stage protection absorbs these transients, maintaining communication between robots and PLCs even 3 meters from welding stations.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🏗️ Ground Loop Protection</h4>
+                    <p class="scenario-description">Factory equipment on different power phases creates 5-15V ground potential differences. The circuit's differential design and TVS clamping prevent ground loops from corrupting CAN data or damaging transceivers.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">📊 24/7 Reliability</h4>
+                    <p class="scenario-description">Production lines run continuously for years. With 500,000+ hour MTBF, this protection outlasts the machinery it protects, preventing the $10,000+/hour downtime cost of communication failures.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Production Impact:</strong> A single CAN failure can stop an entire production line. Average downtime: 2.5 hours × $10,000/hour = $25,000 loss prevented per incident.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marine Modal -->
+    <div class="modal-overlay" id="marineModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🚢</div>
+                <h2 class="modal-title">Marine Electronics Protection</h2>
+                <p class="modal-subtitle">Reliable navigation and engine monitoring at sea</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🌊 Salt Water Intrusion</h4>
+                    <p class="scenario-description">Salt spray creates conductive paths causing 0.5-5mA leakage currents. The circuit detects these abnormal currents and disconnects before corrosion bridges damage the CAN bus, saving $5000+ in marine electronics.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ Alternator Load Dumps</h4>
+                    <p class="scenario-description">Marine alternators produce 50-80V spikes when batteries disconnect in rough seas. The LT4363-1 responds in <10ms, protecting chartplotters, autopilots, and engine monitors that cost $2000-10,000 each.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔌 Shore Power Switching</h4>
+                    <p class="scenario-description">Transitioning between shore power and generators creates 20-30V transients. The bidirectional TVS handles both positive and negative spikes, maintaining NMEA 2000 network integrity during power transfers.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚓ Galvanic Isolation</h4>
+                    <p class="scenario-description">Different metals in seawater create 0.5-1.5V galvanic potentials. The protection circuit prevents these DC offsets from corrupting CAN data or accelerating electrolytic corrosion of connectors.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Safety Impact:</strong> CAN failure at sea risks lives. Protection ensures critical systems (AIS, radar, engine monitoring) remain operational in emergencies. Insurance claims average $50,000 for electronics damage.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transportation Modal -->
+    <div class="modal-overlay" id="transportModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🚆</div>
+                <h2 class="modal-title">Transportation Systems</h2>
+                <p class="modal-subtitle" style="color: #ffcc00;">Level 2 Redundancy for Public Transit</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🚇 Rail Traction Interference</h4>
+                    <p class="scenario-description">Electric trains generate 600-750V DC with massive switching transients. The protection prevents these from coupling into door control and passenger information systems, avoiding service delays that cost $10,000/minute in major cities.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🚌 Fleet-Wide Failures</h4>
+                    <p class="scenario-description">One bus with a failed alternator can inject 80V spikes into depot charging infrastructure, potentially damaging entire fleets. Protection circuits isolate faults, preventing cascade failures across 50+ vehicles.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🚪 Safety-Critical Systems</h4>
+                    <p class="scenario-description">Door controls, emergency brakes, and fire suppression rely on CAN. The 500,000+ hour MTBF ensures these life-safety systems remain operational, meeting strict transit authority SIL-2 requirements.</p>
+                </div>
+                
+                <div class="redundancy-box">
+                    <h4 style="color: #ffcc00; margin-bottom: 1rem;">🚇 Level 2 Redundancy - Transit Reliability</h4>
+                    <p style="margin-bottom: 1rem;">Public transportation requires dual redundancy to minimize service disruptions and maintain passenger safety:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffcc00;">
+                            <h5 style="color: #ffcc00; margin-bottom: 0.5rem;">Primary Network</h5>
+                            <p style="font-size: 0.85rem;">Controls normal operations: propulsion, braking, doors, passenger information, and HVAC systems</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffcc00;">
+                            <h5 style="color: #ffcc00; margin-bottom: 0.5rem;">Backup Network</h5>
+                            <p style="font-size: 0.85rem;">Maintains essential functions: emergency braking, door operation, and communication during primary failure</p>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.85rem; color: #ffcc00; margin-top: 1rem; padding: 0.75rem; background: rgba(255, 204, 0, 0.1); border-radius: 6px;">
+                        <strong>Operational Benefit:</strong> Reduces "train/bus out of service" incidents by 85%. Prevents millions in lost fare revenue and maintains public trust in transit systems.
+                    </p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Public Impact:</strong> A single CAN failure can strand 1000+ passengers. Average delay cost: $50,000/hour in lost productivity. Protection ensures 99.99% network availability for critical transit infrastructure.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renewable Modal -->
+    <div class="modal-overlay" id="renewableModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">⚡</div>
+                <h2 class="modal-title">Renewable Energy</h2>
+                <p class="modal-subtitle" style="color: #ffcc00;">Level 2 Redundancy for Revenue Protection</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ Lightning Strike Protection</h4>
+                    <p class="scenario-description">Wind turbines experience 3-5 lightning strikes annually, inducing 10-20kV on CAN lines. The multi-stage protection clamps these surges, preventing inverter damage that costs $50,000+ and weeks of downtime.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">☀️ MPPT Switching Noise</h4>
+                    <p class="scenario-description">Solar MPPT controllers switch at 50-100kHz, creating broadband EMI. The ferrite bead and capacitor filtering maintain clean CAN communication between string optimizers, preventing 5-10% power harvest losses.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔌 Grid Interconnect Transients</h4>
+                    <p class="scenario-description">Grid faults create 2-3kV microsecond spikes that couple through inverter transformers. Protection prevents these from corrupting inverter-to-inverter coordination, maintaining grid code compliance.</p>
+                </div>
+                
+                <div class="redundancy-box">
+                    <h4 style="color: #ffcc00; margin-bottom: 1rem;">⚡ Level 2 Redundancy - Revenue Protection</h4>
+                    <p style="margin-bottom: 1rem;">For renewable energy installations where downtime directly impacts revenue, Level 2 redundancy ensures continuous power generation:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffcc00;">
+                            <h5 style="color: #ffcc00; margin-bottom: 0.5rem;">Primary Circuit</h5>
+                            <p style="font-size: 0.85rem;">Main protection handling normal operation with real-time grid synchronization and MPPT communication</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffcc00;">
+                            <h5 style="color: #ffcc00; margin-bottom: 0.5rem;">Backup Circuit</h5>
+                            <p style="font-size: 0.85rem;">Secondary protection with automatic failover in <5ms, preventing inverter shutdown and grid disconnection</p>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.85rem; color: #ffcc00; margin-top: 1rem; padding: 0.75rem; background: rgba(255, 204, 0, 0.1); border-radius: 6px;">
+                        <strong>Cost-Benefit:</strong> Level 2 redundancy pays for itself after preventing just 2 days of downtime. Essential for installations where every kWh counts toward ROI.
+                    </p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Revenue Impact:</strong> CAN failure = lost production. 1MW solar farm loses $500-1500/day offline. Wind turbines lose $2000-5000/day. Protection ROI measured in hours, not years.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- First Responder Modal -->
+    <div class="modal-overlay" id="firstResponderModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🚑</div>
+                <h2 class="modal-title">First Responders</h2>
+                <p class="modal-subtitle" style="color: #00c864;">Safe Edition Level 3 - When Seconds Count</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🚨 High-Power Radio Interference</h4>
+                    <p class="scenario-description">Emergency radios transmit at 50-100W, creating intense RF fields. The protection prevents radio bursts from corrupting CAN data controlling sirens, lights, and medical equipment during critical dispatches.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🏥 Life Support Equipment</h4>
+                    <p class="scenario-description">Ambulance defibrillators generate 2000-5000V pulses that couple into vehicle wiring. Protection ensures ventilators, infusion pumps, and monitors maintain operation during cardiac emergencies.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔥 Extreme Environmental Conditions</h4>
+                    <p class="scenario-description">Fire trucks operate near 1000°C fires while police vehicles endure -40°C pursuits. The circuit maintains communication between emergency systems in conditions that destroy consumer electronics.</p>
+                </div>
+                
+                <div class="redundancy-box safe">
+                    <h4 style="color: #00c864; margin-bottom: 1rem;">🚨 Safe Edition Level 3 - Emergency Response Redundancy</h4>
+                    <p style="margin-bottom: 1rem;">First responder vehicles require the same triple redundancy as hospitals to ensure life-saving equipment never fails:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 1: Primary</h5>
+                            <p style="font-size: 0.85rem;">Controls sirens, lights, and primary medical equipment during normal operation</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 2: Backup</h5>
+                            <p style="font-size: 0.85rem;">Instantly maintains defibrillator and ventilator operation if primary fails</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 3: Emergency</h5>
+                            <p style="font-size: 0.85rem;">Battery-backed failsafe ensures critical systems work even with alternator failure</p>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.85rem; color: #00c864; margin-top: 1rem; font-style: italic;">
+                        "When every second counts, triple redundancy isn't overkill - it's lifesaving."
+                    </p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Life Safety Impact:</strong> CAN failure can disable critical warning systems or medical equipment. Every second of downtime in emergency response can mean the difference between life and death. Zero failure tolerance required.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hospital Modal -->
+    <div class="modal-overlay" id="hospitalModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🏥</div>
+                <h2 class="modal-title">Hospital Infrastructure</h2>
+                <p class="modal-subtitle" style="color: #00c864;">Safe Edition Level 3 - Triple Redundancy</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🧲 MRI Scanner Interference</h4>
+                    <p class="scenario-description">3-7 Tesla MRI machines create massive magnetic fields and RF pulses. Protection prevents these from corrupting CAN networks controlling medical gas delivery, HVAC, and emergency power systems throughout the facility.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ Surgical Equipment EMI</h4>
+                    <p class="scenario-description">Electrosurgical units generate 500kHz-5MHz RF energy. The multi-stage filtering prevents OR equipment from disrupting building automation systems that maintain sterile environments and critical temperature control.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔌 Emergency Power Transfers</h4>
+                    <p class="scenario-description">Hospital generators must seamlessly take over during outages. The protection handles 100V+ switching transients, ensuring elevator controls, fire systems, and life support infrastructure maintain communication during power transfers.</p>
+                </div>
+                
+                <div class="redundancy-box safe">
+                    <h4 style="color: #00c864; margin-bottom: 1rem;">🏥 Safe Edition Level 3 - Triple Redundancy</h4>
+                    <p style="margin-bottom: 1rem;">For life-critical hospital infrastructure, the Safe Edition Level 3 provides unprecedented reliability through triple redundancy:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 1: Primary</h5>
+                            <p style="font-size: 0.85rem;">Main protection circuit with real-time monitoring and standard LT4363-1 operation</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 2: Backup</h5>
+                            <p style="font-size: 0.85rem;">Secondary circuit with independent power, activates within 1ms of primary failure</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #00c864;">
+                            <h5 style="color: #00c864; margin-bottom: 0.5rem;">Layer 3: Emergency</h5>
+                            <p style="font-size: 0.85rem;">Tertiary fail-safe with battery backup, ensures 72-hour minimum operation</p>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.85rem; color: #00c864; margin-top: 1rem; font-style: italic;">
+                        Achieves 99.999% (five nines) availability - less than 5 minutes downtime per year
+                    </p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Patient Safety Impact:</strong> Infrastructure failures affect hundreds of patients. Loss of HVAC in operating rooms, medical gas delivery failures, or pharmaceutical storage breaches can be catastrophic. Joint Commission requires 99.99% infrastructure reliability.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aerospace Modal -->
+    <div class="modal-overlay" id="aerospaceModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">✈️</div>
+                <h2 class="modal-title">Aerospace Applications</h2>
+                <p class="modal-subtitle" style="color: #ff0000;">Extreme Edition - Coming Soon</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ Lightning Strike Survival</h4>
+                    <p class="scenario-description">Aircraft experience 1 strike per 1000 flight hours, with 200kA pulses creating 20kV induced voltages. Protection ensures flight control systems, engine FADEC, and avionics maintain operation through direct strikes.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🛰️ Cosmic Radiation</h4>
+                    <p class="scenario-description">At 40,000ft altitude, cosmic radiation causes single-event upsets. Satellite systems face even harsher radiation. The circuit's robust design prevents bit flips from corrupting critical flight data on CAN networks.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🌡️ Extreme Altitude Conditions</h4>
+                    <p class="scenario-description">From -65°C at cruise altitude to +200°C near engines, components face 265°C temperature swings. Aerospace-grade design maintains DO-254 compliance across all flight envelope conditions.</p>
+                </div>
+                
+                <div class="redundancy-box extreme">
+                    <h4 style="color: #ff0000; margin-bottom: 1rem;">🚀 Aerospace "Extreme Edition" - Coming Soon</h4>
+                    <p style="margin-bottom: 1rem;">For the most demanding aerospace and space applications, the Extreme Edition includes ALL Safe Edition Level 3 features PLUS unprecedented physical protection:</p>
+                    
+                    <div style="padding: 1rem; background: rgba(0, 200, 100, 0.05); border: 1px solid rgba(0, 200, 100, 0.3); border-radius: 8px; margin-bottom: 1rem;">
+                        <h5 style="color: #00c864; margin-bottom: 0.5rem;">✓ Includes Complete Safe Edition Level 3 Redundancy</h5>
+                        <p style="font-size: 0.85rem; line-height: 1.6;">
+                            • Triple redundant circuits with 2-out-of-3 voting logic<br>
+                            • Hot-swappable layers for zero-downtime maintenance<br>
+                            • Self-diagnostics with predictive failure alerts<br>
+                            • 99.999% availability (five nines reliability)
+                        </p>
+                    </div>
+                    
+                    <h5 style="color: #ff0000; margin-bottom: 0.5rem;">PLUS Extreme Physical Protection:</h5>
+                    <ul style="list-style: none; font-size: 0.85rem; line-height: 1.8; margin-bottom: 1rem;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff0000;">▸</span>
+                            <strong>Tungsten Enclosure:</strong> Solid metal block provides ultimate cosmic radiation shielding and EMI protection
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff0000;">▸</span>
+                            <strong>Vacuum-Resin Encapsulation:</strong> Components suspended in specialized aerospace resin, vacuum-sealed to eliminate air pockets
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff0000;">▸</span>
+                            <strong>Hermetic Connectors:</strong> MIL-DTL-38999 Series III style connectors - zero plastic components
+                        </li>
+                    </ul>
+                    
+                    <p style="font-size: 0.85rem; color: #ff0000; margin-top: 1rem; font-style: italic;">
+                        Target Applications: Mars rovers, deep space probes, hypersonic vehicles, nuclear environments
+                    </p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Mission Critical Impact:</strong> CAN failure in aerospace means loss of aircraft control or mission failure. Each component requires DO-160G certification. Spacecraft applications demand 15+ year reliability with zero maintenance possibility.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Military Modal -->
+    <div class="modal-overlay" id="militaryModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🎖️</div>
+                <h2 class="modal-title">Military Applications</h2>
+                <p class="modal-subtitle" style="color: #ff0000;">Extreme Edition - Battle-Tested Protection</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">💥 EMP/HEMP Protection</h4>
+                    <p class="scenario-description">Nuclear electromagnetic pulses generate 50kV/m fields. The Extreme Edition's tungsten enclosure and hermetic sealing provide HEMP protection per MIL-STD-188-125, ensuring combat systems remain operational after EMP events.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🎯 Ballistic Shock Survival</h4>
+                    <p class="scenario-description">Armored vehicles experience 500G shock from IED blasts and direct hits. The vacuum-resin encapsulation prevents component movement, maintaining CAN communication for fire control and navigation systems during combat.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔐 Cyber-Physical Security</h4>
+                    <p class="scenario-description">The solid tungsten block prevents side-channel attacks and physical tampering. No accessible wires or test points. Meets NSA TEMPEST requirements for classified systems handling SECRET/TOP SECRET data.</p>
+                </div>
+                
+                <div style="padding: 1rem; background: rgba(255, 0, 0, 0.1); border: 1px solid #ff0000; border-radius: 8px; margin: 1rem 0;">
+                    <p style="font-size: 0.95rem; color: #ff0000; font-weight: 600; margin-bottom: 0.5rem;">
+                        ⚠️ Military Requirement: Extreme Edition Only
+                    </p>
+                    <p style="font-size: 0.85rem;">
+                        Standard protection insufficient for military threats. The Extreme Edition's tungsten enclosure, HEMP shielding, and tamper-proof design are mandatory for all defense applications. Meets MIL-STD-810H, MIL-STD-461G, and ITAR compliance.
+                    </p>
+                </div>
+                
+                <div class="redundancy-box extreme">
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 200, 100, 0.05); border: 1px solid rgba(0, 200, 100, 0.3); border-radius: 8px; margin-bottom: 1rem;">
+                        <h5 style="color: #00c864; margin-bottom: 0.5rem;">✓ Includes Complete Safe Edition Level 3 Redundancy</h5>
+                        <p style="font-size: 0.85rem; line-height: 1.6;">
+                            • Triple redundant circuits with 2-out-of-3 voting logic<br>
+                            • Hot-swappable layers for field maintenance<br>
+                            • Battle damage assessment with automatic failover<br>
+                            • 99.999% availability for mission-critical systems
+                        </p>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 0, 0, 0.05); border: 1px solid rgba(255, 0, 0, 0.3); border-radius: 8px;">
+                        <h5 style="color: #ff0000; margin-bottom: 0.5rem;">PLUS Military-Grade Extreme Protection:</h5>
+                        <p style="font-size: 0.85rem; line-height: 1.6;">
+                            • Tungsten enclosure for ballistic and radiation protection<br>
+                            • HEMP/EMP shielding per MIL-STD-188-125<br>
+                            • Anti-tamper design meeting NSA TEMPEST requirements<br>
+                            • Survives 500G shock from IED/direct hits<br>
+                            • Operational from -60°C to +70°C across all domains
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>Mission Success Impact:</strong> CAN failure disables weapons systems, navigation, and communication. In combat, this means mission failure and casualties. The Extreme Edition provides both redundancy for reliability AND hardening for survivability.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal CAN Modal -->
+    <div class="modal-overlay" id="canUniversalModal">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <div class="modal-header">
+                <div class="modal-icon">🔌</div>
+                <h2 class="modal-title">Universal CAN Compatibility</h2>
+                <p class="modal-subtitle">Protection for Any CAN Implementation</p>
+            </div>
+            <div class="modal-body">
+                <div class="scenario-item">
+                    <h4 class="scenario-title">📡 Protocol Agnostic</h4>
+                    <p class="scenario-description">Works with CAN 2.0A/B, CAN FD, CAN XL. Physical layer protection independent of data protocols. Compatible with any manufacturer's CAN transceivers and controllers.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">⚡ All Speeds Supported</h4>
+                    <p class="scenario-description">Supports 10 kbps to 8+ Mbps. Maintains signal integrity at any data rate without affecting communication timing or introducing propagation delays.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🏭 Universal Voltage Compatibility</h4>
+                    <p class="scenario-description">Designed for 5V CAN systems but compatible with 3.3V and other voltage levels. The 10.3V trip point provides safe margin for all standard CAN implementations.</p>
+                </div>
+                
+                <div class="scenario-item">
+                    <h4 class="scenario-title">🔧 Easy Integration</h4>
+                    <p class="scenario-description">Drops into existing designs with minimal modification. Standard 0805 footprints for surface mount or through-hole options for field repair. No special tooling required.</p>
+                </div>
+                
+                <div class="impact-box">
+                    <strong>ISO 11898 Compliant:</strong> Compatible with transceivers from NXP, TI, Microchip, STMicroelectronics, and all other manufacturers. One design protects any CAN network.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section">
+        <h2 class="section-title gradient-text">Why This Protection Matters</h2>
+        <p class="section-subtitle">The critical benefits of comprehensive CAN bus protection</p>
+        
+        <div class="benefits-container">
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <h4>Zero Downtime</h4>
+                        <p>Prevents costly system failures and production stops</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <h4>Data Integrity</h4>
+                        <p>Ensures clean CAN communication without corruption</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <h4>Extended Lifespan</h4>
+                        <p>Protects expensive ECUs and controllers from damage</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <h4>Safety Compliance</h4>
+                        <p>Meets ISO 11898 and automotive industry standards</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-text">
+                        <h4>Planned Permanence Design</h4>
+                        <p>Engineered with longevity and repairability in mind, using robust components rated for 500,000+ hours MTBF rather than planning for failure or obsolescence</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="benefits-visual">
+                <div class="shield-animation">
+                    <div class="shield">🛡️</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planned Permanence Essay - Expandable -->
+    <section class="section" style="padding: 0;">
+        <div class="obsolescence-block" onclick="toggleObsolescenceDetails()" id="obsolescenceBlock">
+            <div class="obsolescence-header">
+                <h2 class="gradient-text">Against Planned Obsolescence</h2>
+                <p>A Philosophy of Permanence in Electronic Design</p>
+                <span class="expand-icon" id="obsolescenceExpandIcon">⊕</span>
+            </div>
+            
+            <div class="obsolescence-content" id="obsolescenceDetails">
+                <div class="obsolescence-inner">
+                    <div style="margin-bottom: 2rem; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border-left: 4px solid #4a9eff;">
+                        <p style="font-size: 1.2rem; color: #4a9eff; font-weight: 600; margin-bottom: 1rem;">The Problem with Planned Obsolescence</p>
+                        <p>In an era where electronic devices are designed to fail after warranty periods expire, where software updates deliberately slow older hardware, and where repair is made impossible through proprietary screws and serialized components, the LT4363-1 CAN protection circuit stands as a testament to a different philosophy: <strong style="color: #00d4ff;">Planned Permanence</strong>.</p>
+                    </div>
+                    
+                    <p style="margin-bottom: 1.5rem;">Planned obsolescence has become the dark undercurrent of modern electronics. Manufacturers deliberately design products with:</p>
+                    
+                    <ul style="list-style: none; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff4444;">✗</span>
+                            <strong>Artificial lifespans</strong> - Capacitors rated just beyond warranty periods
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff4444;">✗</span>
+                            <strong>Non-replaceable components</strong> - Soldered batteries and glued assemblies
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff4444;">✗</span>
+                            <strong>Proprietary interfaces</strong> - Preventing third-party repair or upgrades
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff4444;">✗</span>
+                            <strong>Software time bombs</strong> - Updates that cripple older hardware
+                        </li>
+                    </ul>
+                    
+                    <div style="margin: 3rem 0; padding: 2rem; background: rgba(74, 158, 255, 0.1); border-radius: 12px; border: 1px solid rgba(74, 158, 255, 0.3);">
+                        <p style="font-size: 1.2rem; color: #4a9eff; font-weight: 600; margin-bottom: 1rem;">The LT4363-1 Design Philosophy</p>
+                        <p>This protection circuit embodies <strong style="color: #00d4ff;">Planned Permanence</strong> through deliberate engineering choices:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <h4 style="color: #4a9eff; margin-bottom: 0.5rem;">Over-Specified Components</h4>
+                                <p style="font-size: 0.95rem;">Every component is rated far beyond expected stress levels. The 55V tolerance protects 5V systems with 10x margin.</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <h4 style="color: #4a9eff; margin-bottom: 0.5rem;">Standard Parts</h4>
+                                <p style="font-size: 0.95rem;">Uses industry-standard components available from multiple manufacturers, ensuring long-term availability.</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <h4 style="color: #4a9eff; margin-bottom: 0.5rem;">Repairable Design</h4>
+                                <p style="font-size: 0.95rem;">Through-hole and large SMD components enable field repair with basic tools, not microscopes.</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <h4 style="color: #4a9eff; margin-bottom: 0.5rem;">Open Documentation</h4>
+                                <p style="font-size: 0.95rem;">Complete schematics and theory of operation ensure anyone can understand and maintain the circuit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 3rem 0; padding: 2rem; background: rgba(0, 212, 255, 0.1); border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.3);">
+                        <p style="font-size: 1.3rem; color: #00d4ff; font-weight: 600; margin-bottom: 1rem; text-align: center;">The Environmental Imperative</p>
+                        <p style="text-align: center;">Every device that lasts 20 years instead of 2 represents a <strong>90% reduction</strong> in manufacturing impact, e-waste, and resource consumption. Planned Permanence isn't just good engineering—it's environmental responsibility.</p>
+                    </div>
+                    
+                    <div style="margin: 3rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 12px;">
+                        <p style="font-size: 1.15rem; margin-bottom: 1.5rem;">Consider the stark contrast: While consumer electronics are designed to drive replacement cycles every 2-3 years, this protection circuit is engineered to outlive the vehicles and equipment it protects. The <strong style="color: #00d4ff;">500,000+ hour MTBF</strong> isn't marketing hyperbole—it's the result of:</p>
+                        
+                        <ul style="list-style: none; margin-bottom: 2rem;">
+                            <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #4a9eff;">✓</span>
+                                <strong>Automotive-grade components</strong> rated for -40°C to +125°C operation
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #4a9eff;">✓</span>
+                                <strong>Ceramic capacitors</strong> instead of electrolytics that dry out
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #4a9eff;">✓</span>
+                                <strong>Metal film resistors</strong> with 1% tolerance that won't drift
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 2rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: #4a9eff;">✓</span>
+                                <strong>Solid-state design</strong> with no mechanical wear points
+                            </li>
+                        </ul>
+                        
+                        <p style="font-size: 1.1rem;">This circuit will protect CAN networks in vehicles manufactured today that will still be on the road in 2050. It will safeguard industrial equipment that runs three shifts for decades. It will ensure reliable communication in infrastructure that our children will inherit.</p>
+                    </div>
+                    
+                    <p style="font-size: 1.2rem; color: #4a9eff; text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(74, 158, 255, 0.1); border-radius: 12px;">
+                        <strong>In a world racing toward disposability, permanence is revolutionary.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Overview -->
+    <section id="technical" class="section">
+        <h2 class="section-title gradient-text">Technical Deep Dive</h2>
+        <p class="section-subtitle">Understanding the LT4363-1 CAN_L Protection Architecture</p>
+        
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>Core Specifications</h3>
+                <ul class="tech-specs">
+                    <li>
+                        <span class="spec-label">Input Voltage Range</span>
+                        <span class="spec-value">0-55V</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Normal CAN_L Range</span>
+                        <span class="spec-value">0-3V</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Trip Voltage</span>
+                        <span class="spec-value">10.3V</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Current Limit</span>
+                        <span class="spec-value">100mA</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Response Time</span>
+                        <span class="spec-value">1-10ms</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tech-card">
+                <h3>Protection Features</h3>
+                <ul class="tech-specs">
+                    <li>
+                        <span class="spec-label">ESD Protection</span>
+                        <span class="spec-value">23kV</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">EMI Filtering</span>
+                        <span class="spec-value">120Ω@100MHz</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Transient Clamp</span>
+                        <span class="spec-value">6.8V TVS</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">Temperature Range</span>
+                        <span class="spec-value">-40°C to +125°C</span>
+                    </li>
+                    <li>
+                        <span class="spec-label">MTBF</span>
+                        <span class="spec-value">>500,000 hrs</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tech-card">
+                <h3>Circuit Intelligence</h3>
+                <p style="line-height: 1.8;">The LT4363-1 continuously monitors voltage and current conditions, providing intelligent disconnect during fault events. The precision voltage divider (R1/R2) sets the exact trip point at 10.3V, optimized for 5V CAN systems while allowing normal CAN_L signal swing.</p>
+                <p style="margin-top: 1rem; color: #4a9eff; font-weight: 600;">V_trip = 1.275V × (1 + 16kΩ/2.2kΩ) = 10.3V</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Note: The circuit includes a status LED for visual fault indication - a diagnostic feature that aids in troubleshooting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Metrics -->
+    <section class="section">
+        <h2 class="section-title gradient-text">Performance Metrics</h2>
+        <p class="section-subtitle">Quantifiable protection you can rely on</p>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value gradient-text">55V</div>
+                <div class="metric-label">Maximum Fault Voltage</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value gradient-text"><1ms</div>
+                <div class="metric-label">Transient Response</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value gradient-text">23kV</div>
+                <div class="metric-label">ESD Protection</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value gradient-text">±2%</div>
+                <div class="metric-label">Trip Accuracy</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value gradient-text">165°C</div>
+                <div class="metric-label">Junction Temp</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value gradient-text">500k+</div>
+                <div class="metric-label">MTBF Hours</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Circuit Preview -->
+    <section class="section">
+        <div class="circuit-preview">
+            <h3 style="font-size: 2rem; margin-bottom: 2rem; color: #4a9eff;">Interactive Circuit Schematic</h3>
+            <p style="color: #a0a0a0; margin-bottom: 2rem;">The circuit features an interactive SVG diagram with zoom/pan controls for detailed analysis</p>
+            
+            <div class="circuit-svg-container" id="svgContainer">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomIn()">+</button>
+                    <div class="zoom-level" id="zoomLevel">100%</div>
+                    <button class="zoom-btn" onclick="zoomOut()">−</button>
+                    <button class="zoom-btn" onclick="resetView()" title="Reset View">⟲</button>
+                </div>
+                <svg class="circuit-svg" viewBox="0 0 1250 600" id="circuitSvg">
+                <!-- Input Terminal -->
+                <rect x="30" y="250" width="70" height="50" class="component-box"/>
+                <text x="65" y="275" text-anchor="middle" class="component-text">CAN_L IN</text>
+                <text x="65" y="290" text-anchor="middle" class="value-text">(Blue)</text>
+                <text x="65" y="305" text-anchor="middle" class="value-text">≤55V</text>
+                
+                <!-- Wire from input to Ferrite Bead -->
+                <line x1="100" y1="275" x2="120" y2="275" class="wire"/>
+                
+                <!-- Ferrite Bead - FIRST component -->
+                <rect x="120" y="270" width="34" height="10" rx="5" class="component-box" fill="#333"/>
+                <line x1="120" y1="275" x2="154" y2="275" class="wire" stroke-width="4" stroke="#666"/>
+                <text x="137" y="260" text-anchor="middle" class="component-text">FB1</text>
+                <text x="137" y="245" text-anchor="middle" class="value-text">120Ω@100MHz</text>
+                
+                <!-- Connection from Ferrite Bead to Zener junction -->
+                <line x1="154" y1="275" x2="180" y2="275" class="wire"/>
+                
+                <!-- Junction point for Zener -->
+                <circle cx="180" cy="275" r="4" class="junction-dot"/>
+                
+                <!-- Input Zener Protection -->
+                <line x1="180" y1="275" x2="180" y2="295" class="wire"/>
+                <line x1="170" y1="295" x2="190" y2="295" class="diode-shape"/>
+                <path d="M 175 305 L 185 295 L 185 305 L 175 295 Z" class="diode-shape" fill="none"/>
+                <line x1="170" y1="305" x2="190" y2="305" class="diode-shape"/>
+                <line x1="170" y1="293" x2="170" y2="297" class="diode-shape"/>
+                <line x1="190" y1="293" x2="190" y2="297" class="diode-shape"/>
+                <text x="195" y="300" class="component-text">D1</text>
+                <text x="195" y="315" class="value-text">5.1V</text>
+                <text x="195" y="330" class="value-text" style="font-size: 10px;">BZX84C5V1</text>
+                
+                <!-- Ground for Zener -->
+                <line x1="180" y1="305" x2="180" y2="350" class="wire"/>
+                <line x1="170" y1="350" x2="190" y2="350" class="ground-symbol"/>
+                <line x1="175" y1="355" x2="185" y2="355" class="ground-symbol"/>
+                <line x1="178" y1="360" x2="182" y2="360" class="ground-symbol"/>
+                
+                <!-- Connection from Zener to RSNS -->
+                <line x1="180" y1="275" x2="230" y2="275" class="wire"/>
+                
+                <!-- Current Sense Resistor RSNS -->
+                <path d="M 230 275 L 235 270 L 240 280 L 245 270 L 250 280 L 255 270 L 260 275" class="resistor"/>
+                <text x="245" y="260" text-anchor="middle" class="component-text">RSNS</text>
+                <text x="245" y="245" text-anchor="middle" class="value-text">0.5Ω 1%</text>
+                <circle cx="230" cy="275" r="3" class="pin-dot"/>
+                <circle cx="260" cy="275" r="3" class="pin-dot"/>
+                
+                <!-- Wire to connect RSNS to junction -->
+                <line x1="260" y1="275" x2="290" y2="275" class="wire"/>
+                
+                <!-- Decoupling Capacitor C1 - right after RSNS -->
+                <line x1="290" y1="275" x2="290" y2="320" class="wire"/>
+                <line x1="280" y1="320" x2="300" y2="320" class="capacitor-line"/>
+                <line x1="280" y1="330" x2="300" y2="330" class="capacitor-line"/>
+                <line x1="290" y1="330" x2="290" y2="340" class="wire"/>
+                <text x="305" y="325" class="component-text">C1</text>
+                <text x="305" y="340" class="value-text">1µF</text>
+                
+                <!-- Ground for C1 -->
+                <line x1="290" y1="340" x2="290" y2="390" class="wire"/>
+                <line x1="280" y1="390" x2="300" y2="390" class="ground-symbol"/>
+                <line x1="285" y1="395" x2="295" y2="395" class="ground-symbol"/>
+                <line x1="288" y1="400" x2="292" y2="400" class="ground-symbol"/>
+                
+                <!-- Junction point after RSNS (connects to VIN and SNS) -->
+                <circle cx="330" cy="275" r="4" class="junction-dot"/>
+                <line x1="290" y1="275" x2="330" y2="275" class="wire"/>
+                
+                <!-- Wire from junction to VIN - no longer needs C1 -->
+                <line x1="330" y1="275" x2="400" y2="275" class="wire"/>
+                
+                <!-- Wire from junction down then to SNS -->
+                <line x1="330" y1="275" x2="330" y2="320" class="wire"/>
+                <line x1="330" y1="320" x2="400" y2="320" class="wire"/>
+                
+                
+                <!-- LT4363-1 IC -->
+                <rect x="400" y="220" width="200" height="200" class="component-box"/>
+                <text x="500" y="250" text-anchor="middle" class="component-text" style="font-size: 16px;">LT4363-1</text>
+                
+                <!-- IC Pins Labels - Inside the IC -->
+                <text x="420" y="280" text-anchor="start" class="component-text">VIN</text>
+                <text x="420" y="325" text-anchor="start" class="component-text">SNS</text>
+                <text x="420" y="355" text-anchor="start" class="component-text">OUT</text>
+                <text x="420" y="385" text-anchor="start" class="component-text">FB</text>
+                <text x="580" y="280" text-anchor="end" class="component-text">GATE</text>
+                <text x="580" y="325" text-anchor="end" class="component-text">STATUS</text>
+                <text x="500" y="405" text-anchor="middle" class="component-text">GND</text>
+                
+                <!-- Pin connections -->
+                <circle cx="400" cy="275" r="3" class="pin-dot"/>
+                <circle cx="400" cy="320" r="3" class="pin-dot"/>
+                <circle cx="400" cy="350" r="3" class="pin-dot"/>
+                <circle cx="400" cy="380" r="3" class="pin-dot"/>
+                <circle cx="600" cy="275" r="3" class="pin-dot"/>
+                <circle cx="600" cy="320" r="3" class="pin-dot"/>
+                <circle cx="500" cy="420" r="3" class="pin-dot"/>
+                
+                <!-- OUT pin connection -->
+                <line x1="400" y1="350" x2="350" y2="350" class="wire"/>
+                <line x1="350" y1="350" x2="350" y2="180" class="wire"/>
+                <line x1="350" y1="180" x2="850" y2="180" class="wire"/>
+                <line x1="850" y1="180" x2="850" y2="275" class="wire"/>
+                
+                <!-- Optional MOSFET -->
+                <rect x="700" y="245" width="100" height="60" class="optional-box"/>
+                <text x="750" y="230" text-anchor="middle" class="component-text">Optional</text>
+                <text x="750" y="280" text-anchor="middle" class="component-text">IRLZ44N</text>
+                <line x1="600" y1="275" x2="700" y2="275" class="wire"/>
+                <circle cx="700" cy="275" r="3" class="pin-dot"/>
+                <circle cx="800" cy="275" r="3" class="pin-dot"/>
+                <line x1="800" y1="275" x2="850" y2="275" class="wire"/>
+                
+                <!-- Output junction point -->
+                <circle cx="850" cy="275" r="4" class="junction-dot"/>
+                
+                <!-- Voltage Divider -->
+                <line x1="850" y1="275" x2="850" y2="300" class="wire"/>
+                
+                <!-- R2 -->
+                <path d="M 850 300 L 840 305 L 860 310 L 840 315 L 860 320 L 840 325 L 850 330" class="resistor"/>
+                <text x="875" y="315" class="component-text">R2</text>
+                <text x="875" y="330" class="value-text">16kΩ</text>
+                
+                <!-- Connection between R2 and R1 -->
+                <line x1="850" y1="330" x2="850" y2="380" class="wire"/>
+                
+                <!-- FB connection point -->
+                <circle cx="850" cy="380" r="4" class="junction-dot"/>
+                
+                <!-- FB wire - routed around the left side -->
+                <line x1="850" y1="380" x2="820" y2="380" class="wire"/>
+                <line x1="820" y1="380" x2="820" y2="540" class="wire"/>
+                <line x1="820" y1="540" x2="380" y2="540" class="wire"/>
+                <line x1="380" y1="540" x2="380" y2="380" class="wire"/>
+                <line x1="380" y1="380" x2="400" y2="380" class="wire"/>
+                
+                <!-- R1 -->
+                <line x1="850" y1="380" x2="850" y2="410" class="wire"/>
+                <path d="M 850 410 L 840 415 L 860 420 L 840 425 L 860 430 L 840 435 L 850 440" class="resistor"/>
+                <text x="875" y="425" class="component-text">R1</text>
+                <text x="875" y="440" class="value-text">2.2kΩ</text>
+                
+                <!-- Ground for R1 -->
+                <line x1="850" y1="440" x2="850" y2="500" class="wire"/>
+                <line x1="840" y1="500" x2="860" y2="500" class="ground-symbol"/>
+                <line x1="845" y1="505" x2="855" y2="505" class="ground-symbol"/>
+                <line x1="848" y1="510" x2="852" y2="510" class="ground-symbol"/>
+                
+                <!-- TVS Diode - Bidirectional -->
+                <line x1="850" y1="275" x2="950" y2="275" class="wire"/>
+                <line x1="950" y1="275" x2="950" y2="320" class="wire"/>
+                <!-- Bidirectional TVS symbol -->
+                <line x1="935" y1="320" x2="965" y2="320" class="diode-shape"/>
+                <path d="M 940 320 L 950 330 L 960 320" class="diode-shape" fill="none"/>
+                <path d="M 940 330 L 950 320 L 960 330" class="diode-shape" fill="none"/>
+                <line x1="940" y1="330" x2="935" y2="330" class="diode-shape"/>
+                <line x1="960" y1="330" x2="965" y2="330" class="diode-shape"/>
+                <line x1="935" y1="325" x2="935" y2="335" class="diode-shape"/>
+                <line x1="965" y1="325" x2="965" y2="335" class="diode-shape"/>
+                <text x="970" y="330" text-anchor="start" class="component-text">TVS</text>
+                <text x="970" y="345" text-anchor="start" class="value-text">1.5KE6.8CA</text>
+                <text x="970" y="360" text-anchor="start" class="value-text">(Bidir)</text>
+                
+                <!-- Ground for TVS -->
+                <line x1="950" y1="330" x2="950" y2="390" class="wire"/>
+                <line x1="940" y1="390" x2="960" y2="390" class="ground-symbol"/>
+                <line x1="945" y1="395" x2="955" y2="395" class="ground-symbol"/>
+                <line x1="948" y1="400" x2="952" y2="400" class="ground-symbol"/>
+                
+                <!-- Status LED Circuit -->
+                <line x1="600" y1="320" x2="653" y2="320" class="wire"/>
+                
+                <!-- LED Symbol - Using exact provided code structure -->
+                <path d="M 653 320 L 668 312 L 668 328 Z" class="led-p"/>
+                <line x1="668" y1="312" x2="668" y2="328" class="led-p" stroke-width="3"/>
+                <circle cx="660.5" cy="320" r="10" class="led-g"/>
+                <path d="M 672 308 L 676 304 M 674 304 L 676 304 L 676 306 M 672 316 L 676 312 M 674 312 L 676 312 L 676 314" class="led-p" stroke-width="1"/>
+                
+                <line x1="668" y1="320" x2="720" y2="320" class="wire"/>
+                
+                <!-- LED Label -->
+                <text x="660" y="345" text-anchor="middle" class="component-text">LED</text>
+                
+                <!-- LED Resistor - made smaller and moved further right -->
+                <path d="M 720 320 L 725 315 L 730 325 L 735 315 L 740 325 L 745 315 L 750 320" class="resistor"/>
+                <text x="735" y="350" text-anchor="middle" class="component-text">1kΩ</text>
+                <circle cx="720" cy="320" r="3" class="pin-dot"/>
+                <circle cx="750" cy="320" r="3" class="pin-dot"/>
+                
+                <!-- Ground for LED -->
+                <line x1="750" y1="320" x2="760" y2="320" class="wire"/>
+                <line x1="760" y1="320" x2="760" y2="380" class="wire"/>
+                <line x1="750" y1="380" x2="770" y2="380" class="ground-symbol"/>
+                <line x1="755" y1="385" x2="765" y2="385" class="ground-symbol"/>
+                <line x1="758" y1="390" x2="762" y2="390" class="ground-symbol"/>
+                
+                <!-- Output Terminal -->
+                <line x1="950" y1="275" x2="1100" y2="275" class="wire"/>
+                <rect x="1100" y="250" width="90" height="50" class="component-box"/>
+                <text x="1145" y="275" text-anchor="middle" class="component-text">CAN_L OUT</text>
+                <text x="1145" y="290" text-anchor="middle" class="value-text">(Blue)</text>
+                <text x="1145" y="305" text-anchor="middle" class="value-text">Protected</text>
+                
+                <!-- Main Ground -->
+                <line x1="500" y1="420" x2="500" y2="500" class="wire"/>
+                <line x1="490" y1="500" x2="510" y2="500" class="ground-symbol"/>
+                <line x1="495" y1="505" x2="505" y2="505" class="ground-symbol"/>
+                <line x1="498" y1="510" x2="502" y2="510" class="ground-symbol"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title gradient-text">Advanced CAN Bus Protection</h3>
+            <p class="footer-text">Engineered for reliability. Built to last. Protected by design.</p>
+            <p style="color: #666; font-size: 0.9rem;">© 2024 LT4363-1 Protection Systems | Technical Documentation</p>
+        </div>
+    </footer>
+</body>
+</html>
